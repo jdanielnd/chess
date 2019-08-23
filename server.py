@@ -23,7 +23,7 @@ import argparse
 import asyncio
 import aiohttp.web
 import chess
-import chess.svg
+import svg
 import cairosvg
 import re
 
@@ -68,7 +68,7 @@ class Service:
 
         flipped = request.query.get("orientation", "white") == "black"
 
-        return chess.svg.board(board, coordinates=False, flipped=flipped, lastmove=lastmove, check=check, arrows=arrows, size=size, style=self.css)
+        return svg.board(board, coordinates=True, flipped=flipped, lastmove=lastmove, check=check, arrows=arrows, size=size, style=self.css)
 
     @asyncio.coroutine
     def render_svg(self, request):
@@ -84,7 +84,7 @@ class Service:
 def arrow(s):
     tail = chess.SQUARE_NAMES.index(s[:2])
     head = chess.SQUARE_NAMES.index(s[2:]) if len(s) > 2 else tail
-    return chess.svg.Arrow(tail, head)
+    return svg.Arrow(tail, head)
 
 
 if __name__ == "__main__":
