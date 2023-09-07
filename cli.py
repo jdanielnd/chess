@@ -19,18 +19,13 @@
 
 """An HTTP service that renders chess board images"""
 
-import argparse
-import asyncio
-import aiohttp.web
 import chess
 import svg
-import cairosvg
-import re
 import hashlib
 
 index = 1
 
-with open('fen18.txt', 'r') as f:
+with open('fen_positions.csv', 'r') as f:
   for fen in f:
     parts = fen.replace("_", " ").split(" ", 1)
     board = chess.BaseBoard("/".join(parts[0].split("/")[0:8]))

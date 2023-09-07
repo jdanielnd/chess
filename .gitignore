@@ -1,4 +1,6 @@
-venv
+.venv
 outputs/*
 .DS_Store
 __pycache__
+inputs/*
+outputs/*
